@@ -63,17 +63,18 @@ const countryDisplayData: countryData = countriesList[randomNum];
 console.log('randomNum:', randomNum);
 console.log('country:', countryDisplayData);
 
-const [displayAnswer, setDisplayAnswer] = useState(false);
-
-const handlePress = () => {
-    setDisplayAnswer(true);
-};
-
 function App(): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    };
+
+    const [displayAnswer, setDisplayAnswer] = useState(false);
+
+    const handlePress = () => {
+        console.log('handle press');
+        setDisplayAnswer(true);
     };
 
     return (
@@ -85,7 +86,7 @@ function App(): JSX.Element {
                     </Text>
                     <Button
                         title="Reveal answer"
-                        onPress={() => handlePress}></Button>
+                        onPress={() => handlePress()}></Button>
                     <Text
                         style={
                             displayAnswer ? styles.display : styles.displayNone
