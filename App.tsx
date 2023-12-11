@@ -1,45 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import type {PropsWithChildren, ReactElement} from 'react';
 
 import {
     Button,
     SafeAreaView,
     ScrollView,
-    StatusBar,
     StyleSheet,
     Text,
     TouchableOpacity,
-    useColorScheme,
     View,
 } from 'react-native';
 
-import {
-    Colors,
-    DebugInstructions,
-    Header,
-    LearnMoreLinks,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-    title: string;
-}>;
-
-// Generate a country from a list of countries -- probably organised into continents
-// Render this country on the app
-// Text input or just a show answer button?
-
-// Render the flag at the beginning -- not when the user guesses
-// Render the location on a map after the user presses Reveal answer
-
-// After the user has hit reveal answer, have a button that resets the state of the app
-
-type countryData = {
+type CountryData = {
     country: string;
     capital: string;
 };
 
-const countriesList: countryData[] = [
+const countriesList: CountryData[] = [
     {
         country: 'United Kingdom',
         capital: 'London',
@@ -64,37 +41,52 @@ const countriesList: countryData[] = [
 
 const randomNum: number = Math.floor(Math.random() * countriesList.length);
 
-const countryDisplayData: countryData = countriesList[randomNum];
+type FunctionNoReturn = () => void; // better way probably
 
-console.log('randomNum:', randomNum);
-console.log('country:', countryDisplayData);
-
-type functionNoReturn = () => void;
-
-function App(): ReactElement<countryData> {
+function App(): ReactElement<CountryData> {
+    // ReactElement probably isn't the best type here
     const [displayAnswer, setDisplayAnswer] = useState(false);
-    const [countryData, setCountryData] = useState<countryData>(
+    const [countryData, setCountryData] = useState<CountryData>(
         countriesList[randomNum],
     );
+    // const [previousCountry, setPreviousCountry] = useState<string>(
+    //     countriesList[randomNum].country,
+    // );
+    const previousCountry = useRef<string>(countryData.country);
+
+    console.log('country data:', countryData);
+    console.log('previous country:', previousCountry.current);
 
     const randonNumberToReturn: () => number = () => {
         return Math.floor(Math.random() * countriesList.length);
     };
 
-    const handlePress: functionNoReturn = () => {
+    const handlePress: FunctionNoReturn = () => {
         console.log('handle press');
         setDisplayAnswer(true);
     };
 
-    const newCountry: functionNoReturn = () => {
+    const newCountry: FunctionNoReturn = () => {
         // Reset the display answer button
         // Reset the next country button
         // Render a new country to the screen
         // If this were a browser, I might just reset the page
         setDisplayAnswer(false);
         // Reset the data in countryDisplayData
+        let newCountryData: CountryData = countriesList[randonNumberToReturn()]; // state
+        function checkCountry(): void {
+            if (newCountryData.country === previousCountry.current) {
+                newCountryData = countriesList[randonNumberToReturn()];
+                checkCountry();
+            }
+        }
+        checkCountry();
         setCountryData(countriesList[randonNumberToReturn()]);
     };
+
+    // const setCountryToDisplay: FunctionNoReturn = () => {
+    //     if (countryData.country !== previousCountry) return;
+    // };
 
     return (
         <SafeAreaView>
@@ -112,7 +104,7 @@ function App(): ReactElement<countryData> {
                         style={
                             displayAnswer ? styles.display : styles.displayNone
                         }>
-                        {countryDisplayData.capital}
+                        {countryData.capital}
                     </Text>
                     <TouchableOpacity
                         style={
