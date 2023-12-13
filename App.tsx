@@ -54,8 +54,8 @@ function App(): ReactElement<CountryData> {
     // );
     const previousCountry = useRef<string>(countryData.country);
 
-    console.log('country data:', countryData);
-    console.log('previous country:', previousCountry.current);
+    // console.log('country data:', countryData);
+    // console.log('previous country:', previousCountry.current);
 
     const randonNumberToReturn: () => number = () => {
         return Math.floor(Math.random() * countriesList.length);
@@ -67,14 +67,11 @@ function App(): ReactElement<CountryData> {
     };
 
     const newCountry: FunctionNoReturn = () => {
-        // Reset the display answer button
-        // Reset the next country button
-        // Render a new country to the screen
-        // If this were a browser, I might just reset the page
         setDisplayAnswer(false);
-        // Reset the data in countryDisplayData
         let newCountryData: CountryData = countriesList[randonNumberToReturn()]; // state
         function checkCountry(): void {
+            console.log('new country', newCountryData.country);
+            console.log('prev country', previousCountry.current);
             if (newCountryData.country === previousCountry.current) {
                 newCountryData = countriesList[randonNumberToReturn()];
                 checkCountry();
@@ -82,11 +79,14 @@ function App(): ReactElement<CountryData> {
         }
         checkCountry();
         setCountryData(countriesList[randonNumberToReturn()]);
+        // previousCountry.current =
     };
 
     // const setCountryToDisplay: FunctionNoReturn = () => {
     //     if (countryData.country !== previousCountry) return;
     // };
+
+    // Save data in local device storage as soon as possible
 
     return (
         <SafeAreaView>
