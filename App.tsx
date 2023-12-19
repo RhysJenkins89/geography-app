@@ -1,6 +1,5 @@
 import React, {useState, useRef} from 'react';
 import type {PropsWithChildren, ReactElement} from 'react';
-
 import {
     Button,
     SafeAreaView,
@@ -17,6 +16,7 @@ type CountryData = {
 };
 
 const countriesList: CountryData[] = [
+    // pseudo database data
     {
         country: 'United Kingdom',
         capital: 'London',
@@ -79,7 +79,6 @@ function App(): ReactElement<CountryData> {
         }
         checkCountry();
         setCountryData(countriesList[randonNumberToReturn()]);
-        // previousCountry.current =
     };
 
     // const setCountryToDisplay: FunctionNoReturn = () => {
