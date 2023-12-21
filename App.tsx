@@ -70,8 +70,8 @@ function App(): ReactElement<CountryData> {
         setDisplayAnswer(false);
         let newCountryData: CountryData = countriesList[randonNumberToReturn()]; // state
         function checkCountry(): void {
-            console.log('new country', newCountryData.country);
-            console.log('prev country', previousCountry.current);
+            // console.log('new country', newCountryData.country);
+            // console.log('prev country', previousCountry.current);
             if (newCountryData.country === previousCountry.current) {
                 newCountryData = countriesList[randonNumberToReturn()];
                 checkCountry();
@@ -79,6 +79,7 @@ function App(): ReactElement<CountryData> {
         }
         checkCountry();
         setCountryData(countriesList[randonNumberToReturn()]);
+        previousCountry.current = countryData.country;
     };
 
     // const setCountryToDisplay: FunctionNoReturn = () => {
