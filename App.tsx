@@ -80,6 +80,8 @@ function App(): ReactElement<CountryData> {
         checkCountry();
         setCountryData(countriesList[randonNumberToReturn()]);
         previousCountry.current = countryData.country;
+        console.log('Upcoming country:', countryData.country);
+        console.log('Previous country:', previousCountry.current);
     };
 
     // const setCountryToDisplay: FunctionNoReturn = () => {
