@@ -52,38 +52,21 @@ function App(): ReactElement<CountryData> {
 
     const previousCountry = useRef<string>(countryData.country);
 
-    const randonNumberToReturn: () => number = () => {
+    const randomNumberToReturn: () => number = () => {
         return Math.floor(Math.random() * countriesList.length);
     };
 
     const handlePress: FunctionNoReturn = () => {
-        console.log('handle press');
         setDisplayAnswer(true);
     };
 
     const newCountry: FunctionNoReturn = () => {
+        // console.log('Previous country:', previousCountry.current);
+        const nextCountry: CountryData = countriesList[randomNumberToReturn()]; // This might not be the best practice, but it works.
+        previousCountry.current = nextCountry.country;
         setDisplayAnswer(false);
-        let newCountryData: CountryData = countriesList[randonNumberToReturn()]; // state
-        function checkCountry(): void {
-            // console.log('new country', newCountryData.country);
-            // console.log('prev country', previousCountry.current);
-            if (newCountryData.country === previousCountry.current) {
-                newCountryData = countriesList[randonNumberToReturn()];
-                checkCountry();
-            }
-        }
-        checkCountry();
-        setCountryData(countriesList[randonNumberToReturn()]);
-        previousCountry.current = countryData.country;
-        console.log('Upcoming country:', countryData.country);
-        console.log('Previous country:', previousCountry.current);
+        setCountryData(nextCountry);
     };
-
-    // const setCountryToDisplay: FunctionNoReturn = () => {
-    //     if (countryData.country !== previousCountry) return;
-    // };
-
-    // Save data in local device storage as soon as possible
 
     return (
         <SafeAreaView>
