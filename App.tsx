@@ -49,13 +49,8 @@ function App(): ReactElement<CountryData> {
     const [countryData, setCountryData] = useState<CountryData>(
         countriesList[randomNum],
     );
-    // const [previousCountry, setPreviousCountry] = useState<string>(
-    //     countriesList[randomNum].country,
-    // );
-    const previousCountry = useRef<string>(countryData.country);
 
-    // console.log('country data:', countryData);
-    // console.log('previous country:', previousCountry.current);
+    const previousCountry = useRef<string>(countryData.country);
 
     const randonNumberToReturn: () => number = () => {
         return Math.floor(Math.random() * countriesList.length);
