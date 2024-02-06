@@ -61,8 +61,15 @@ function App(): ReactElement<CountryData> {
     };
 
     const newCountry: FunctionNoReturn = () => {
-        // console.log('Previous country:', previousCountry.current);
-        const nextCountry: CountryData = countriesList[randomNumberToReturn()]; // This might not be the best practice, but it works.
+        // Prettier setting for format
+        const countryDataWithoutPrevCountry: CountryData[] =
+            countriesList.filter(item => {
+                return item.country != previousCountry.current;
+            });
+        const nextCountry: CountryData =
+            countryDataWithoutPrevCountry[
+                Math.floor(Math.random() * countryDataWithoutPrevCountry.length)
+            ];
         previousCountry.current = nextCountry.country;
         setDisplayAnswer(false);
         setCountryData(nextCountry);
