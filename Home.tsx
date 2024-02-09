@@ -43,6 +43,7 @@ const randomNum: number = Math.floor(Math.random() * countriesList.length);
 
 type FunctionNoReturn = () => void; // better way probably
 
+// navigation prop type
 function HomeScreen(): ReactElement<CountryData> {
     // ReactElement probably isn't the best type here
     const [displayAnswer, setDisplayAnswer] = useState(false);
