@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
 
 type CountryData = {
     country: string;
@@ -43,7 +44,17 @@ const randomNum: number = Math.floor(Math.random() * countriesList.length);
 
 type FunctionNoReturn = () => void; // better way probably
 
-// navigation prop type
+// Navgation prop types
+// import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+// type RootStackParamList = {
+//   Home: undefined;
+//   Profile: { userId: string };
+//   Feed: { sort: 'latest' | 'top' } | undefined;
+// };
+
+// type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
+
 function HomeScreen(): ReactElement<CountryData> {
     // ReactElement probably isn't the best type here
     const [displayAnswer, setDisplayAnswer] = useState(false);
@@ -101,6 +112,10 @@ function HomeScreen(): ReactElement<CountryData> {
                         onPress={() => newCountry()}>
                         <Text>Next country</Text>
                     </TouchableOpacity>
+                    <Button
+                        title="Test button"
+                        onPress={() => navigation.navigate('Test screen')}
+                    />
                 </View>
             </ScrollView>
         </SafeAreaView>
