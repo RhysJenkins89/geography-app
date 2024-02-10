@@ -3,7 +3,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './Home';
 import TestScreen from './TestScreen';
 
-const Stack = createNativeStackNavigator();
+// Navgation prop types
+type RootStackParamList = {
+    Home: undefined;
+    TestScreen: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
     return (
@@ -15,7 +21,7 @@ function App() {
                     options={{title: 'Home'}}
                 />
                 <Stack.Screen
-                    name="Testing"
+                    name="TestScreen"
                     component={TestScreen}
                     options={{title: 'Test Screen'}}
                 />
