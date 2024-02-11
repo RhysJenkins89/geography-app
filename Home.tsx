@@ -43,7 +43,17 @@ const randomNum: number = Math.floor(Math.random() * countriesList.length);
 
 type FunctionNoReturn = () => void; // better way probably
 
-function HomeScreen(): ReactElement<CountryData> {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+type RootStackParamList = {
+    Home: undefined;
+    TestScreen: undefined;
+    Feed: {sort: 'latest' | 'top'} | undefined;
+};
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
+
+function HomeScreen({route, navigation}: Props): ReactElement<CountryData> {
     // ReactElement probably isn't the best type here
     const [displayAnswer, setDisplayAnswer] = useState(false);
     const [countryData, setCountryData] = useState<CountryData>(
@@ -102,7 +112,7 @@ function HomeScreen(): ReactElement<CountryData> {
                     </TouchableOpacity>
                     <Button
                         title="Test button"
-                        onPress={() => navigation.navigate('Test screen')}
+                        onPress={() => navigation.navigate('TestScreen')}
                     />
                 </View>
             </ScrollView>
