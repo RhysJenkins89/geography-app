@@ -1,4 +1,4 @@
-import {SafeAreaView, ScrollView, Text, View, Button} from 'react-native';
+import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 type RootStackParamList = {
@@ -8,12 +8,12 @@ type RootStackParamList = {
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
-function TestScreen({navigation}: Props) {
+function Profile({navigation}: Props) {
     return (
         <SafeAreaView>
             <ScrollView>
                 <View>
-                    <Text>Hello there! This is another screen.</Text>
+                    <Text>This is the profile page.</Text>
                     <Button
                         title="Home"
                         onPress={() => navigation.navigate('Home')}
@@ -24,4 +24,4 @@ function TestScreen({navigation}: Props) {
     );
 }
 
-export default TestScreen;
+export default Profile;
