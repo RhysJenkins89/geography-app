@@ -14,6 +14,7 @@ Run the app on an Android with `npm run android`.
 
 ## To do
 
+-   Add a web app to the Firebase project. That way, both this Native app and a React web app can talk to the same Firebase project.
 -   Add user login functionality
 -   General UX design
 -   Profile page
