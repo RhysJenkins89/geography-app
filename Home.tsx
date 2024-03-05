@@ -10,6 +10,7 @@ import {
     View,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import LoginScreen from './login/Login';
 
 type CountryData = {
     country: string;
@@ -112,6 +113,7 @@ function HomeScreen({navigation}: Props): ReactElement<CountryData> {
                         title="Test button"
                         onPress={() => navigation.navigate('TestScreen')}
                     />
+                    <LoginScreen />
                 </View>
             </ScrollView>
         </SafeAreaView>
