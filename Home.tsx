@@ -10,15 +10,12 @@ import {
     View,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type CountryData from './types/home.types';
 import LoginScreen from './login/Login';
-
-type CountryData = {
-    country: string;
-    capital: string;
-};
 
 const countriesList: CountryData[] = [
     // pseudo database data
+    // These data should live in Firebase
     {
         country: 'United Kingdom',
         capital: 'London',
