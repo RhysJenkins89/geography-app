@@ -3,9 +3,4 @@ type CountryData = {
     capital: string;
 };
 
-// type RootStackParamList = {
-//     Home: undefined;
-//     TestScreen: undefined;
-// };
-
 export default CountryData;

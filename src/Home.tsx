@@ -10,8 +10,9 @@ import {
     View,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import type CountryData from './types/home.types';
-import LoginScreen from './login/Login';
+import RootStackParamList from '../types/navigation.types';
+import type CountryData from '../types/home.types';
+import LoginScreen from '../login/Login';
 
 const countriesList: CountryData[] = [
     // pseudo database data
@@ -39,13 +40,6 @@ const countriesList: CountryData[] = [
 ];
 
 const randomNum: number = Math.floor(Math.random() * countriesList.length);
-
-type FunctionNoReturn = () => void; // better way probably
-
-type RootStackParamList = {
-    Home: undefined;
-    TestScreen: undefined;
-};
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
