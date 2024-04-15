@@ -1,10 +1,6 @@
 import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-type RootStackParamList = {
-    Home: undefined;
-    TestScreen: undefined;
-};
+import RootStackParamList from '../types/navigation.types';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 

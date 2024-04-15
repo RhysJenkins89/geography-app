@@ -1,8 +1,8 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './src/Home';
-import TestScreen from './src/TestScreen';
-import RootStackParamList from './types/navigation.types';
+import Profile from './src/profile/Profile';
+import RootStackParamList from './src/types/navigation.types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -16,9 +16,9 @@ function App() {
                     options={{title: 'Home'}}
                 />
                 <Stack.Screen
-                    name="TestScreen"
-                    component={TestScreen}
-                    options={{title: 'Test Screen'}}
+                    name="Profile"
+                    component={Profile}
+                    options={{title: 'Profile'}}
                 />
             </Stack.Navigator>
         </NavigationContainer>

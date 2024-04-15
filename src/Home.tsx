@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import type {PropsWithChildren, ReactElement} from 'react';
+import type {ReactElement} from 'react';
 import {
     Button,
     SafeAreaView,
@@ -10,9 +10,9 @@ import {
     View,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import RootStackParamList from '../types/navigation.types';
-import type CountryData from '../types/home.types';
-import LoginScreen from '../login/Login';
+import RootStackParamList from './types/navigation.types';
+import type CountryData from './types/home.types';
+import LoginScreen from './login/Login';
 
 const countriesList: CountryData[] = [
     // pseudo database data
@@ -39,29 +39,24 @@ const countriesList: CountryData[] = [
     },
 ];
 
-const randomNum: number = Math.floor(Math.random() * countriesList.length);
-
 type Props = NativeStackScreenProps<RootStackParamList>;
 
 function HomeScreen({navigation}: Props): ReactElement<CountryData> {
-    // ReactElement probably isn't the best type here
+    const [randomNumber, setRandomNumber] = useState<number>(
+        Math.floor(Math.random() * countriesList.length),
+    );
     const [displayAnswer, setDisplayAnswer] = useState(false);
     const [countryData, setCountryData] = useState<CountryData>(
-        countriesList[randomNum],
+        countriesList[randomNumber],
     );
 
     const previousCountry = useRef<string>(countryData.country);
 
-    const randomNumberToReturn: () => number = () => {
-        return Math.floor(Math.random() * countriesList.length);
-    };
-
-    const handlePress: FunctionNoReturn = () => {
+    const handlePress = () => {
         setDisplayAnswer(true);
     };
 
-    const newCountry: FunctionNoReturn = () => {
-        // Prettier setting for format
+    const newCountry = () => {
         const countryDataWithoutPrevCountry: CountryData[] =
             countriesList.filter(item => {
                 return item.country != previousCountry.current;
@@ -101,10 +96,10 @@ function HomeScreen({navigation}: Props): ReactElement<CountryData> {
                         <Text>Next country</Text>
                     </TouchableOpacity>
                     <Button
-                        title="Test button"
-                        onPress={() => navigation.navigate('TestScreen')}
+                        title="Profile"
+                        onPress={() => navigation.navigate('Profile')}
                     />
-                    <LoginScreen />
+                    {/* <LoginScreen /> */}
                 </View>
             </ScrollView>
         </SafeAreaView>

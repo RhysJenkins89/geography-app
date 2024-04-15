@@ -1,6 +1,6 @@
 type RootStackParamList = {
     Home: undefined;
-    TestScreen: undefined;
+    Profile: undefined;
 };
 
 export default RootStackParamList;
