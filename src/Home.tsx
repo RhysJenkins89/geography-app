@@ -12,7 +12,7 @@ import {
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import RootStackParamList from './types/navigation.types';
 import type CountryData from './types/home.types';
-import LoginScreen from './login/Login';
+// import LoginScreen from './login/Login';
 
 const countriesList: CountryData[] = [
     // pseudo database data
@@ -45,7 +45,7 @@ function HomeScreen({navigation}: Props): ReactElement<CountryData> {
     const [randomNumber, setRandomNumber] = useState<number>(
         Math.floor(Math.random() * countriesList.length),
     );
-    const [displayAnswer, setDisplayAnswer] = useState(false);
+    const [displayAnswer, setDisplayAnswer] = useState<boolean>(false);
     const [countryData, setCountryData] = useState<CountryData>(
         countriesList[randomNumber],
     );
@@ -59,7 +59,7 @@ function HomeScreen({navigation}: Props): ReactElement<CountryData> {
     const newCountry = () => {
         const countryDataWithoutPrevCountry: CountryData[] =
             countriesList.filter(item => {
-                return item.country != previousCountry.current;
+                return item.country !== previousCountry.current;
             });
         const nextCountry: CountryData =
             countryDataWithoutPrevCountry[
